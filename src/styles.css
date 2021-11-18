@@ -1,0 +1,63 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #caf0f8;
+}
+.form-group {
+  margin-top: 10px;
+}
+.search-label {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+h1,
+h2 {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+.current-location h3 {
+  padding: 0px;
+  margin: 0px auto;
+  position: fixed;
+  top: 0;
+  right: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: lighter;
+}
+.card .current-temperature {
+  background-color: #caf0f8;
+}
+.current-temperature button {
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+.current-temperature h1 {
+  font-size: 100px;
+  margin-left: 35px;
+}
+h5 {
+  text-align: center;
+}
+h6 {
+  text-align: center;
+}
+.card-footer {
+  text-align: center;
+}
+.weather-details,
+.hourly-temperatures {
+  font-weight: bold;
+}
+.future-details {
+  margin-top: 20px;
+}
+.card-text {
+  text-align: center;
+}
+.future-temperature {
+  text-align: center;
+}
+#celcius-button {
+  margin-top: 5px;
+}
