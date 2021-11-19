@@ -1,4 +1,3 @@
-import "./styles.css";
 function getPosition(position) {
   let lat = position.coords.latitude;
   console.log(lat);
