@@ -18,6 +18,24 @@ function defaultDisplay(response) {
   tempDisplay.innerHTML = `${currentTemperature}&#176;`;
   let description = document.querySelector("#main-description");
   description.innerHTML = response.data.weather[0].description;
+  console.log(response.data.wind.speed);
+  let windSpeed = document.querySelector("#wind");
+  windSpeed.innerHTML = `Wind Speed: ${Math.round(
+    response.data.wind.speed
+  )}mph`;
+  console.log(windSpeed);
+  let minTemp = document.querySelector("#low");
+  minTemp.innerHTML = `Low: ${Math.round(response.data.main.temp_min)}&#176`;
+  console.log(minTemp);
+  let maxTemp = document.querySelector("#high");
+  maxTemp.innerHTML = `High: ${Math.round(response.data.main.temp_max)}&#176`;
+  console.log(maxTemp);
+  let sunrise = document.querySelector("#sunrise");
+  sunrise.innerHTML = `Sunrise: ${response.data.sys.sunrise}`;
+  console.log(sunrise);
+  let sunset = document.querySelector("#sunset");
+  sunset.innerHTML = `Sunset: ${response.data.sys.sunset}`;
+  console.log(sunset);
 }
 
 let days = [
