@@ -1,8 +1,12 @@
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #caf0f8;
+  background-color: #2e4c6d;
 }
 .form-group {
+  margin-top: 10px;
+  color: white;
+}
+.submit-button {
   margin-top: 10px;
 }
 .search-label {
@@ -14,6 +18,7 @@ h2 {
   text-align: center;
   font-family: "Roboto", sans-serif;
   font-weight: bold;
+  color: white;
 }
 .current-location h3 {
   padding: 0px;
@@ -22,19 +27,30 @@ h2 {
   top: 0;
   right: 20px;
   font-family: "Roboto", sans-serif;
-  font-weight: lighter;
+  font-weight: bold;
+  color: white;
+  text-transform: capitalize;
 }
 .card .current-temperature {
-  background-color: #caf0f8;
+  background-color: #2e4c6d;
+}
+#main-description {
+  color: white;
 }
 .current-temperature button {
   display: block;
   margin: 0 auto;
   border-radius: 8px;
 }
+.current-temperature {
+  color: white;
+}
 .current-temperature h1 {
   font-size: 100px;
   margin-left: 35px;
+}
+.current-temperature h6 {
+  text-transform: capitalize;
 }
 h5 {
   text-align: center;
@@ -63,4 +79,5 @@ h6 {
 }
 footer {
   font-size: small;
+  color: white;
 }

@@ -100,6 +100,11 @@ function search(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(showTemperature);
   axios.get(apiUrl).then(showDetails);
+  axios.get(apiUrl).then(showTime);
+}
+
+function showTime(response) {
+  console.log(response.data.dt * 1000);
 }
 
 function showTemperature(response) {
