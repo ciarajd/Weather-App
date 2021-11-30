@@ -118,6 +118,8 @@ function showTemperature(response) {
   console.log(tempDisplay);
   let description = document.querySelector("#main-description");
   description.innerHTML = response.data.weather[0].description;
+  let celciusTemperature = currentTemperature;
+  console.log(celciusTemperature);
 }
 
 function showDetails(response) {
@@ -140,5 +142,15 @@ function showDetails(response) {
   sunset.innerHTML = `Sunset: ${response.data.sys.sunset}`;
   console.log(sunset);
 }
+
+function displayFahrenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#main-temp");
+  let fahrenheitTemperature = (temperatureElement.innerHTML * 9) / 5 + 32;
+  temperatureElement.innerHTML = `${Math.round(fahrenheitTemperature)} &#176`;
+}
+
+let fahrenheitButton = document.querySelector("#fahrenheit-button");
+fahrenheitButton.addEventListener("click", displayFahrenheit);
 
 navigator.geolocation.getCurrentPosition(getPosition);
