@@ -65,13 +65,13 @@ h6 {
 .hourly-temperatures {
   font-weight: bold;
 }
-.future-details {
+.forecast {
   margin-top: 20px;
 }
 .card-text {
   text-align: center;
 }
-.future-temperature {
+.forecast-temperature {
   text-align: center;
 }
 #celcius-button {
