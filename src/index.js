@@ -90,6 +90,73 @@ searchCity.addEventListener("submit", search);
 
 function displayForecast(response) {
   console.log(response.data.daily);
+  // descriptions //
+  let dayOneDescription = response.data.daily[1].weather[0].description;
+  let dayTwoDescription = response.data.daily[2].weather[0].description;
+  let dayThreeDescription = response.data.daily[3].weather[0].description;
+  let dayFourDescription = response.data.daily[4].weather[0].description;
+  // temperatures //
+  let dayOneTempMax = Math.round(response.data.daily[1].temp.max);
+  let dayOneTempMin = Math.round(response.data.daily[1].temp.min);
+  let dayTwoTempMax = Math.round(response.data.daily[2].temp.max);
+  let dayTwoTempMin = Math.round(response.data.daily[2].temp.min);
+  let dayThreeTempMax = Math.round(response.data.daily[3].temp.max);
+  let dayThreeTempMin = Math.round(response.data.daily[3].temp.min);
+  let dayFourTempMax = Math.round(response.data.daily[4].temp.max);
+  let dayFourTempMin = Math.round(response.data.daily[4].temp.min);
+  //icons & HTML//
+  let iconElementOne = document.querySelector(".forecast-day-one");
+  let iconCodeOne = response.data.daily[1].weather[0].icon;
+  console.log(iconCodeOne);
+  iconElementOne.innerHTML = `
+    <div class="card forecast-day-one">
+  <img class="icon-1" src="http://openweathermap.org/img/wn/${iconCodeOne}@2x.png" alt="Card image cap" width="100">
+  <div class="card-body">
+    <h5 class="card-title forecast-date">Sunday 17th October</h5>
+    <h6 class="card-subtitle text-muted forecast-description" id="description-one"> ${dayOneDescription}</h6>
+    <p class= "forecast-temperature" id="temp-one"> ${dayOneTempMax}&#176; / ${dayOneTempMin}&#176;</p>
+  </div>
+  </div>
+  </div>`;
+  let iconElementTwo = document.querySelector(".forecast-day-two");
+  let iconCodeTwo = response.data.daily[2].weather[0].icon;
+  console.log(iconCodeTwo);
+  iconElementTwo.innerHTML = `
+<div class="card forecast-day-two">
+  <img class="icon-2" src="http://openweathermap.org/img/wn/${iconCodeTwo}@2x.png" alt="Card image cap" width="100">
+  <div class="card-body">
+    <h5 class="card-title forecast-date">Monday 18th October</h5>
+    <h6 class="card-subtitle text-muted forecast-description" id="description-two"> ${dayTwoDescription}</h6>
+    <p class= "forecast-temperature" id="temp-two"> ${dayTwoTempMax}&#176; / ${dayTwoTempMin}&#176;</p>
+  </div>
+</div>
+</div>`;
+  let iconElementThree = document.querySelector(".forecast-day-three");
+  let iconCodeThree = response.data.daily[3].weather[0].icon;
+  console.log(iconCodeThree);
+  iconElementThree.innerHTML = `
+<div class="card forecast-day-three">
+  <img class="icon-3" src="http://openweathermap.org/img/wn/${iconCodeThree}@2x.png" alt="Card image cap" width="100">
+  <div class="card-body">
+    <h5 class="card-title forecast-date">Monday 18th October</h5>
+    <h6 class="card-subtitle text-muted forecast-description" id="description-three"> ${dayThreeDescription}</h6>
+    <p class= "forecast-temperature" id="temp-three"> ${dayThreeTempMax}&#176; / ${dayThreeTempMin}&#176;</p>
+  </div>
+</div>
+</div>`;
+  let iconElementFour = document.querySelector(".forecast-day-four");
+  let iconCodeFour = response.data.daily[4].weather[0].icon;
+  console.log(iconCodeFour);
+  iconElementFour.innerHTML = `
+<div class="card forecast-day-four">
+  <img class="icon-4" src="http://openweathermap.org/img/wn/${iconCodeFour}@2x.png" alt="Card image cap" width="100">
+  <div class="card-body">
+    <h5 class="card-title forecast-date">Monday 18th October</h5>
+    <h6 class="card-subtitle text-muted forecast-description" id="description-four"> ${dayFourDescription}</h6>
+    <p class= "forecast-temperature" id="temp-four"> ${dayFourTempMax}&#176; / ${dayFourTempMin}&#176;</p>
+  </div>
+</div>
+</div>`;
 }
 
 function getForecast(coordinates) {

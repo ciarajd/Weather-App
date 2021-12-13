@@ -68,11 +68,21 @@ h6 {
 .forecast {
   margin-top: 20px;
 }
+.card {
+  display: flex;
+  justify-content: center;
+}
 .card-text {
   text-align: center;
 }
+img {
+  margin: 0 auto;
+}
 .forecast-temperature {
   text-align: center;
+}
+.forecast-description {
+  text-transform: capitalize;
 }
 #celcius-button {
   margin-top: 5px;
@@ -80,4 +90,5 @@ h6 {
 footer {
   font-size: small;
   color: white;
+  margin-top: 20px;
 }

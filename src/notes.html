@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+            </div>
+<div class="col-sm-3">
+    <div class="card forecast-day-two">
+  <img class="icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title forecast-date">Monday 18th October</h5>
+    <h6 class="card-subtitle text-muted forecast-description" id="description-two"> Cloudy</h6>
+    <p class= "forecast-temperature"> -&#176; / -&#176;</p>
+  </div>
+    </div>
+</div>
+<div class="col-sm-3">
+    <div class="card forecast-day-three">
+  <img class = "icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="Card image cap" width="100">
+  <div class="card-body">
+    <h5 class="card-title forecast-date">Tuesday 19th October</h5>
+    <h6 class="card-subtitle text-muted forecast-description" id="description-three"> Drizzle</h6>
+    <p class= "forecast-temperature"> -&#176; / -&#176;</p>
+  </div>
+    </div>
+</div>
+<div class="col-sm-3">
+    <div class="card forecast-day-four">
+      <img class = "icon" src="http://openweathermap.org/img/wn/10d@2x.png" alt="Card image cap" width="100">
+  <div class="card-body">
+    <h5 class="card-title forecast-date">Thursday 20th October</h5>
+    <h6 class="card-subtitle text-muted forecast-description" id="description-four"> Cloudy</h6>
+    <p class= "forecast-temperature"> -&#176; / -&#176;</p>
+  </div>
+    </div>
+</div>
+</div>
+
+function displayForecast(response) {
+  console.log(response.data.daily);
+
+
+  
+  let dayOneTemp = document.querySelector("#description-one");
+  dayOneTemp.innerHTML = response.data.daily[1].weather[0].description;
+  let dayTwoTemp = document.querySelector("#description-two");
+  dayTwoTemp.innerHTML = response.data.daily[2].weather[0].description;
+  let dayThreeTemp = document.querySelector("#description-three");
+  dayThreeTemp.innerHTML = response.data.daily[3].weather[0].description;
+  let dayFourTemp = document.querySelector("#description-four");
+  dayFourTemp.innerHTML = response.data.daily[4].weather[0].description;
+  let dayFourIcon = document.querySelector("#icon-4");
+  dayFourIcon = innerHTML = response.data.daily[4].weather[0].icon;
+}
+</body>
+</html>
