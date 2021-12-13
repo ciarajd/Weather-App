@@ -8,10 +8,39 @@ function getPosition(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(defaultDisplay);
 }
+function formatDate(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  return days[day];
+}
+
+function formatTime(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getUTCHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = now.getUTCMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hours}:${minutes}`;
+}
 
 function defaultDisplay(response) {
   let currentLocation = document.querySelector("h3");
   currentLocation.innerHTML = response.data.name;
+  console.log(response.data);
   console.log(currentLocation);
   let currentTemperature = Math.round(response.data.main.temp);
   let tempDisplay = document.querySelector("#main-temp");
@@ -30,12 +59,16 @@ function defaultDisplay(response) {
   let maxTemp = document.querySelector("#high");
   maxTemp.innerHTML = `High: ${Math.round(response.data.main.temp_max)}&#176`;
   console.log(maxTemp);
-  let sunrise = document.querySelector("#sunrise");
-  sunrise.innerHTML = `Sunrise: ${response.data.sys.sunrise}`;
+  let sunrise = response.data.sys.sunrise + response.data.timezone;
   console.log(sunrise);
-  let sunset = document.querySelector("#sunset");
-  sunset.innerHTML = `Sunset: ${response.data.sys.sunset}`;
+  let sunriseFormat = formatTime(sunrise * 1000);
+  let sunriseDisplay = document.querySelector("#sunrise");
+  sunriseDisplay.innerHTML = `Sunrise: ${sunriseFormat}`;
+  let sunset = response.data.sys.sunset + response.data.timezone;
   console.log(sunset);
+  let sunsetFormat = formatTime(sunset * 1000);
+  let sunsetDisplay = document.querySelector("#sunset");
+  sunsetDisplay.innerHTML = `Sunset: ${sunsetFormat}`;
 }
 
 let days = [
@@ -104,6 +137,12 @@ function displayForecast(response) {
   let dayThreeTempMin = Math.round(response.data.daily[3].temp.min);
   let dayFourTempMax = Math.round(response.data.daily[4].temp.max);
   let dayFourTempMin = Math.round(response.data.daily[4].temp.min);
+  //dates//
+  let dayOneDate = response.data.daily[1].dt;
+  console.log(dayOneDate);
+  let dayTwoDate = response.data.daily[2].dt;
+  let dayThreeDate = response.data.daily[3].dt;
+  let dayFourDate = response.data.daily[4].dt;
   //icons & HTML//
   let iconElementOne = document.querySelector(".forecast-day-one");
   let iconCodeOne = response.data.daily[1].weather[0].icon;
@@ -112,7 +151,7 @@ function displayForecast(response) {
     <div class="card forecast-day-one">
   <img class="icon-1" src="http://openweathermap.org/img/wn/${iconCodeOne}@2x.png" alt="Card image cap" width="100">
   <div class="card-body">
-    <h5 class="card-title forecast-date">Sunday 17th October</h5>
+    <h5 class="card-title forecast-date">${formatDate(dayOneDate)}</h5>
     <h6 class="card-subtitle text-muted forecast-description" id="description-one"> ${dayOneDescription}</h6>
     <p class= "forecast-temperature" id="temp-one"> ${dayOneTempMax}&#176; / ${dayOneTempMin}&#176;</p>
   </div>
@@ -125,7 +164,7 @@ function displayForecast(response) {
 <div class="card forecast-day-two">
   <img class="icon-2" src="http://openweathermap.org/img/wn/${iconCodeTwo}@2x.png" alt="Card image cap" width="100">
   <div class="card-body">
-    <h5 class="card-title forecast-date">Monday 18th October</h5>
+    <h5 class="card-title forecast-date">${formatDate(dayTwoDate)}</h5>
     <h6 class="card-subtitle text-muted forecast-description" id="description-two"> ${dayTwoDescription}</h6>
     <p class= "forecast-temperature" id="temp-two"> ${dayTwoTempMax}&#176; / ${dayTwoTempMin}&#176;</p>
   </div>
@@ -138,7 +177,7 @@ function displayForecast(response) {
 <div class="card forecast-day-three">
   <img class="icon-3" src="http://openweathermap.org/img/wn/${iconCodeThree}@2x.png" alt="Card image cap" width="100">
   <div class="card-body">
-    <h5 class="card-title forecast-date">Monday 18th October</h5>
+    <h5 class="card-title forecast-date">${formatDate(dayThreeDate)}</h5>
     <h6 class="card-subtitle text-muted forecast-description" id="description-three"> ${dayThreeDescription}</h6>
     <p class= "forecast-temperature" id="temp-three"> ${dayThreeTempMax}&#176; / ${dayThreeTempMin}&#176;</p>
   </div>
@@ -151,12 +190,33 @@ function displayForecast(response) {
 <div class="card forecast-day-four">
   <img class="icon-4" src="http://openweathermap.org/img/wn/${iconCodeFour}@2x.png" alt="Card image cap" width="100">
   <div class="card-body">
-    <h5 class="card-title forecast-date">Monday 18th October</h5>
+    <h5 class="card-title forecast-date">${formatDate(dayFourDate)}</h5>
     <h6 class="card-subtitle text-muted forecast-description" id="description-four"> ${dayFourDescription}</h6>
     <p class= "forecast-temperature" id="temp-four"> ${dayFourTempMax}&#176; / ${dayFourTempMin}&#176;</p>
   </div>
 </div>
 </div>`;
+  // hourly //
+  let plusOne = Math.round(response.data.hourly[1].temp);
+  let plusTwo = Math.round(response.data.hourly[2].temp);
+  let plusThree = Math.round(response.data.hourly[3].temp);
+  let plusFour = Math.round(response.data.hourly[4].temp);
+  let plusFive = Math.round(response.data.hourly[5].temp);
+  let hourlyHTML = document.querySelector(".hourly-temperatures");
+  hourlyHTML.innerHTML = `<div class="card hourly-temperatures">
+            <div class="card-header">Hourly Temperatures</div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" id="+1">+ 1 hours : ${plusOne}&#176;</li>
+              <li class="list-group-item" id="+2">+ 2 hours : ${plusTwo}&#176;</li>
+              <li class="list-group-item" id="+3">+ 3 hours : ${plusThree}&#176;</li>
+              <li class="list-group-item" id="+4">+ 4 hours : ${plusFour}&#176;</li>
+              <li class="list-group-item" id="+5">+ 5 hours : ${plusFive}&#176;</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+`;
 }
 
 function getForecast(coordinates) {
@@ -209,12 +269,16 @@ function showDetails(response) {
   let maxTemp = document.querySelector("#high");
   maxTemp.innerHTML = `High: ${Math.round(response.data.main.temp_max)}&#176`;
   console.log(maxTemp);
-  let sunrise = document.querySelector("#sunrise");
-  sunrise.innerHTML = `Sunrise: ${response.data.sys.sunrise}`;
+  let sunrise = response.data.sys.sunrise + response.data.timezone;
   console.log(sunrise);
-  let sunset = document.querySelector("#sunset");
-  sunset.innerHTML = `Sunset: ${response.data.sys.sunset}`;
+  let sunriseFormat = formatTime(sunrise * 1000);
+  let sunriseDisplay = document.querySelector("#sunrise");
+  sunriseDisplay.innerHTML = `Sunrise: ${sunriseFormat}`;
+  let sunset = response.data.sys.sunset + response.data.timezone;
   console.log(sunset);
+  let sunsetFormat = formatTime(sunset * 1000);
+  let sunsetDisplay = document.querySelector("#sunset");
+  sunsetDisplay.innerHTML = `Sunset: ${sunsetFormat}`;
 }
 
 function displayFahrenheit(event) {
