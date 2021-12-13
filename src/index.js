@@ -102,6 +102,9 @@ let hour = now.getHours();
 console.log(hour);
 let minutes = now.getMinutes();
 console.log(minutes);
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
 let currentDay = days[now.getDay()];
 console.log(currentDay);
 let currentYear = now.getFullYear();
