@@ -281,14 +281,12 @@ function showDetails(response) {
   sunsetDisplay.innerHTML = `Sunset: ${sunsetFormat}`;
 }
 
-function displayFahrenheit(event) {
+function displayMessage(event) {
   event.preventDefault();
-  let temperatureElement = document.querySelector("#main-temp");
-  let fahrenheitTemperature = (temperatureElement.innerHTML * 9) / 5 + 32;
-  temperatureElement.innerHTML = `${Math.round(fahrenheitTemperature)} &#176`;
+  alert("This function is currently unavailable");
 }
 
 let fahrenheitButton = document.querySelector("#fahrenheit-button");
-fahrenheitButton.addEventListener("click", displayFahrenheit);
+fahrenheitButton.addEventListener("click", displayMessage);
 
 navigator.geolocation.getCurrentPosition(getPosition);
